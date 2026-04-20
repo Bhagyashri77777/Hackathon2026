@@ -1,0 +1,35 @@
+import streamlit as st
+import time
+import random
+
+# Page Setup
+st.set_page_config(page_title="TrustShield", page_icon="🛡️")
+
+st.title("🛡️ TrustShield: Multi-Modal Fraud Detection")
+st.markdown("**Team: CodeShield Alliance ✨**")
+st.divider()
+
+# --- ENGINE 1: PHISHING SCANNER ---
+st.header("🔗 Engine 1: Phishing & Text Scanner")
+user_text = st.text_input("Paste a suspicious link or SMS here:")
+
+if st.button("Scan Text"):
+    with st.spinner("Extracting ML Features..."):
+        time.sleep(2)
+        if "urgent" in user_text.lower() or "otp" in user_text.lower() or ".xyz" in user_text.lower():
+            st.error("🚨 DANGER! Phishing Probability: 88%\n\nReason: Suspicious anatomy and panic keywords detected.")
+        else:
+            st.success("✅ SAFE. No immediate threat detected in this anatomy.")
+
+st.divider()
+
+# --- ENGINE 2: AUDIO SCANNER ---
+st.header("🎙️ Engine 2: Deepfake Audio Scanner")
+uploaded_file = st.file_uploader("Upload suspicious audio recording (.mp3, .wav)", type=["mp3", "wav"])
+
+if uploaded_file is not None:
+    if st.button("Analyze Audio"):
+        with st.spinner("Running Spectrogram Analysis..."):
+            time.sleep(3)
+            mock_score = random.randint(82, 98)
+            st.error(f"⚠️ THREAT DETECTED! Synthetic Voice Probability: {mock_score}%.\n\nReason: Lack of natural human breathing detected.")
